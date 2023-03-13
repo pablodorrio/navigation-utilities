@@ -4,9 +4,9 @@ Author:
     Pablo Dorrio Vazquez
 """
 
-from src.oxts import Oxts
-from src.utils.coordinate import Coordinate
-from src.utils.time import Time
+from src.navigation_utilities.oxts import Oxts
+from src.navigation_utilities.utils.coordinate import Coordinate
+from src.navigation_utilities.utils.time import Time
 
 
 class Nmea:

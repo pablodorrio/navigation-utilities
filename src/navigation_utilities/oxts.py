@@ -6,7 +6,7 @@ Author:
 
 import numpy as np
 
-from src.utils.coordinate import Coordinate
+from src.navigation_utilities.utils.coordinate import Coordinate
 
 EARTH_RADIUS = 6371000
 
