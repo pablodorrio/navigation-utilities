@@ -6,14 +6,14 @@ Author:
 
 import numpy as np
 
-from src.navigation_utilities.utils.coordinate import Coordinate
+from .utils.coordinate import Coordinate
 
 EARTH_RADIUS = 6371000
 
 
 class Oxts:
     """This class represents the OxTS sentence.
-    
+
     Attributes:
         latitude (float): Latitude of the location
         longitude (float): Longitude of the location
@@ -79,8 +79,8 @@ class Oxts:
             np.radians, [lat_0, lon_0, self.latitude, self.longitude])
         delta_lat, delta_lon = lat - lat_0, lon - lon_0
 
-        x_coord = np.cos(lat_0)*np.sin(lat) - np.sin(lat_0) * \
-            np.cos(lat)*np.cos(delta_lon)
+        x_coord = ((np.cos(lat_0)*np.sin(lat) - np.sin(lat_0)
+                   * np.cos(lat)*np.cos(delta_lon)))
         y_coord = np.sin(delta_lon)*np.cos(lon)
         theta = np.arctan2(y_coord, x_coord)
 

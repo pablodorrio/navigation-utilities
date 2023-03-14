@@ -4,14 +4,14 @@ Author:
     Pablo Dorrio Vazquez
 """
 
-from src.navigation_utilities.oxts import Oxts
-from src.navigation_utilities.utils.coordinate import Coordinate
-from src.navigation_utilities.utils.time import Time
+from .oxts import Oxts
+from .utils.coordinate import Coordinate
+from .utils.time import Time
 
 
 class Nmea:
     """This class represents a NMEA sentence.
-    
+
     Attributes:
         latitude (str): Latitude of the location.
         longitude (str): Longitude of the location.

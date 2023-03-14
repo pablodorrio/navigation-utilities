@@ -1,0 +1,12 @@
+LICENSE
+README.md
+pyproject.toml
+src/navigation_utilities/__init__.py
+src/navigation_utilities/nmea.py
+src/navigation_utilities/oxts.py
+src/navigation_utilities.egg-info/PKG-INFO
+src/navigation_utilities.egg-info/SOURCES.txt
+src/navigation_utilities.egg-info/dependency_links.txt
+src/navigation_utilities.egg-info/top_level.txt
+src/navigation_utilities/utils/coordinate.py
+src/navigation_utilities/utils/time.py
