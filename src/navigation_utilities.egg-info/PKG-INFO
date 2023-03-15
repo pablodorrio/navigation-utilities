@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: navigation-utilities
-Version: 0.1.0
+Version: 0.1.2
 Summary: Collection of utilities for driverless navigation systems and gnss tools
 Author-email: Pablo Dorrio Vazquez <pablo.dorrio.vazquez@gmail.com>
 Project-URL: Homepage, https://github.com/pablodorrio/navigation-utilities

@@ -5,7 +5,7 @@ Author:
 """
 
 from .oxts import Oxts
-from .utils.coordinate import Coordinate
+from .coordinate import Coordinate
 from .utils.time import Time
 
 
@@ -63,7 +63,7 @@ class Gpgga(Nmea):
         time (Time): Time of the location.
     """
 
-    def __init__(self, latitude: str, longitude: str, time: Time) -> None:
+    def __init__(self, latitude: str, longitude: str, time: Time=None) -> None:
         """Initialize the NMEA(GPGGA) sentence.
 
         Args:
