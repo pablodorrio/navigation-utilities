@@ -54,8 +54,8 @@ class Nmea:
         return f"{self.__latitude}, {self.__longitude}"
 
 
-class Gpgga(Nmea):
-    """This class represents a NMEA(GPGGA) sentence.
+class Gngga(Nmea):
+    """This class represents a NMEA($GNGGA) sentence.
     
     Attributes:
         latitude (str): Latitude of the location.
@@ -64,15 +64,15 @@ class Gpgga(Nmea):
     """
 
     def __init__(self, latitude: str, longitude: str, time: Time=None) -> None:
-        """Initialize the NMEA(GPGGA) sentence.
+        """Initialize the NMEA($GNGGA) sentence.
 
         Args:
             latitude (float): Latitude of the location.
             longitude (float): Longitude of the location.
             time (Time): Time of the location.
 
-        NMEA (GPGGA) latitude format: "DDMM.MMMMMMMC"
-        NMEA (GPGGA) longitude format: "DDDMM.MMMMMMM"
+        NMEA ($GNGGA) latitude format: "DDMM.MMMMMMMC"
+        NMEA ($GNGGA) longitude format: "DDDMM.MMMMMMM"
 
         Example:    latitude = "4217.8161502N"
                     longitude = "00748.0032395W"
@@ -81,11 +81,11 @@ class Gpgga(Nmea):
         self.__time = time
 
     def to_oxts(self) -> Oxts:
-        """Transform the latitude and longitude from NMEA (GPGGA)
+        """Transform the latitude and longitude from NMEA ($GNGGA)
         to decimal degrees.
 
         Returns:
-            OxTS: OXTS sentence whit the latitude and longitude in decimal degrees.
+            Oxts: OxTS sentence with the latitude and longitude in decimal degrees.
         """
 
         lat_dir = super().latitude[-1]  # North or south
@@ -107,7 +107,7 @@ class Gpgga(Nmea):
         return Oxts(lat_dec, lon_dec)
 
     def to_coordinate(self, lat_0: float, lon_0: float) -> Coordinate:
-        """Transform the latitude and longitude from NMEA (GPGGA)
+        """Transform the latitude and longitude from NMEA ($GNGGA)
         to a bidimensional (x, y) coordinate.
 
         Args:
@@ -121,9 +121,9 @@ class Gpgga(Nmea):
         return oxts.to_coordinate(lat_0, lon_0)
 
     def __str__(self) -> str:
-        """Get the string representation of the NMEA(GPGGA) sentence.
+        """Get the string representation of the NMEA($GNGGA) sentence.
 
         Returns:
-            str: String representation of the NMEA(GPGGA) sentence.
+            str: String representation of the NMEA($GNGGA) sentence.
         """
         return f"{self.__time}, {super().__str__()}"
