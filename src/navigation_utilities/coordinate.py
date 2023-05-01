@@ -1,7 +1,7 @@
 """Container module for the Coordinate class.
 
 Author:
-    Pablo Dorrio Vazquez
+    Pablo Dorrio Vazquez (@pablodorrio)
 """
 
 

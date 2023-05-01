@@ -1,16 +1,23 @@
-"""This module contains the Time class."""
+"""This module contains the Time class.
+
+Author:
+    Pablo Dorrio Vazquez (@pablodorrio)
+"""
 
 
 class Time:
     """This class represents a time in the format hh:mm:ss.
-    
+
     Attributes:
         hours (int): Hours.
         minutes (int): Minutes.
         seconds (int): Seconds.
+        miliseconds (int): Miliseconds.
     """
 
-    def __init__(self, hours: int, minutes: int, seconds: int) -> None:
+    def __init__(
+        self, hours: int, minutes: int, seconds: int, miliseconds: int
+    ) -> None:
         """Initialize the time sentence.
 
         Args:
@@ -21,6 +28,7 @@ class Time:
         self.__hours = hours
         self.__minutes = minutes
         self.__seconds = seconds
+        self.__miliseconds = miliseconds
 
     @property
     def hours(self) -> int:
@@ -75,10 +83,28 @@ class Time:
         """
         self.__seconds = seconds
 
+    @property
+    def miliseconds(self) -> int:
+        """Get the miliseconds of the time.
+
+        Returns:
+            int: Miliseconds.
+        """
+        return self.__miliseconds
+
+    @miliseconds.setter
+    def miliseconds(self, miliseconds: int) -> None:
+        """Set the miliseconds of the time.
+
+        Args:
+            miliseconds (int): Miliseconds.
+        """
+        self.__miliseconds = miliseconds
+
     def __str__(self) -> str:
         """Get the time representation of time in the format "hh:mm:ss".
 
         Returns:
             str: String representation of time.
         """
-        return f"{self.__hours}:{self.__minutes}:{self.__seconds}"
+        return f"{self.__hours}:{self.__minutes}:{self.__seconds}:{self.__miliseconds}"

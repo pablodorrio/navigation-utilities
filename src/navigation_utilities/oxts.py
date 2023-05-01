@@ -1,7 +1,7 @@
 """Container module for the Oxts class.
 
 Author:
-    Pablo Dorrio Vazquez
+    Pablo Dorrio Vazquez (@pablodorrio)
 """
 
 import numpy as np

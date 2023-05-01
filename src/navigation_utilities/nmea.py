@@ -1,11 +1,9 @@
 """Container module for NMEA data format classes.
 
 Author:
-    Pablo Dorrio Vazquez
+    Pablo Dorrio Vazquez (@pablodorrio)
 """
 
-from .oxts import Oxts
-from .coordinate import Coordinate
 from .utils.time import Time
 
 
@@ -17,7 +15,7 @@ class Nmea:
         longitude (str): Longitude of the location.
     """
 
-    def __init__(self, latitude: str, longitude: str) -> None:
+    def __init__(self, latitude: str, longitude: str, time: Time) -> None:
         """Initialize the NMEA sentence.
 
         Args:
@@ -26,6 +24,7 @@ class Nmea:
         """
         self.__latitude = latitude
         self.__longitude = longitude
+        self.__time = time
 
     @property
     def latitude(self) -> str:
@@ -45,85 +44,36 @@ class Nmea:
         """
         return self.__longitude
 
+    @property
+    def time(self) -> Time:
+        """Get the time of the location.
+
+        Returns:
+            Time: Time of the location.
+        """
+        return self.__time
+
     def __str__(self) -> str:
         """Get the string representation of the NMEA sentence.
 
         Returns:
             str: String representation of the NMEA sentence.
         """
-        return f"{self.__latitude}, {self.__longitude}"
+        return f"Latitude: {self.__latitude}, Longitude: {self.__longitude}, Time: {self.__time}"
 
 
-class Gngga(Nmea):
-    """This class represents a NMEA($GNGGA) sentence.
-    
+class NmeaError(Exception):
+    """Exception raised for errors in the NMEA sentence.
+
     Attributes:
-        latitude (str): Latitude of the location.
-        longitude (str): Longitude of the location.
-        time (Time): Time of the location.
+        message (str): Explanation of the error.
     """
 
-    def __init__(self, latitude: str, longitude: str, time: Time=None) -> None:
-        """Initialize the NMEA($GNGGA) sentence.
+    def __init__(self, message: str) -> None:
+        """Initialize the NmeaError exception.
 
         Args:
-            latitude (float): Latitude of the location.
-            longitude (float): Longitude of the location.
-            time (Time): Time of the location.
-
-        NMEA ($GNGGA) latitude format: "DDMM.MMMMMMMC"
-        NMEA ($GNGGA) longitude format: "DDDMM.MMMMMMM"
-
-        Example:    latitude = "4217.8161502N"
-                    longitude = "00748.0032395W"
+            message (str): Explanation of the error.
         """
-        super().__init__(latitude, longitude)
-        self.__time = time
-
-    def to_oxts(self) -> Oxts:
-        """Transform the latitude and longitude from NMEA ($GNGGA)
-        to decimal degrees.
-
-        Returns:
-            Oxts: OxTS sentence with the latitude and longitude in decimal degrees.
-        """
-
-        lat_dir = super().latitude[-1]  # North or south
-        lat_deg = int(super().latitude[:2])  # Degrees
-        lat_min = float(super().latitude[2:-1])  # Minutes
-
-        lon_dir = super().longitude[-1]  # East or west
-        lon_deg = int(super().longitude[:3])  # Degrees
-        lon_min = float(super().longitude[3:-1])  # Minutes
-
-        lat_dec = lat_deg + (lat_min / 60)
-        lon_dec = lon_deg + (lon_min / 60)
-
-        if lat_dir == 'S':
-            lat_dec *= -1
-        if lon_dir == 'W':
-            lon_dec *= -1
-
-        return Oxts(lat_dec, lon_dec)
-
-    def to_coordinate(self, lat_0: float, lon_0: float) -> Coordinate:
-        """Transform the latitude and longitude from NMEA ($GNGGA)
-        to a bidimensional (x, y) coordinate.
-
-        Args:
-            lat_0 (float): Latitude of the origin in decimal degrees.
-            lon_0 (float): Longitude of the origin in decimal degrees.
-
-        Returns:
-            Coordinate: Bidimensional (x, y) coordinate of the location.
-        """
-        oxts = self.to_oxts()
-        return oxts.to_coordinate(lat_0, lon_0)
-
-    def __str__(self) -> str:
-        """Get the string representation of the NMEA($GNGGA) sentence.
-
-        Returns:
-            str: String representation of the NMEA($GNGGA) sentence.
-        """
-        return f"{self.__time}, {super().__str__()}"
+        self.message = message
+        super().__init__(self.message)
