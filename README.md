@@ -7,7 +7,7 @@ Navigation Utilities is a Python library for dealing with driverless navigation 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install navigation-utilities.
 
 ```bash
-python -m pip install navigation-utilities -r requirements.txt
+pip install navigation-utilities
 ```
 
 ## Usage
