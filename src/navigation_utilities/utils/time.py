@@ -24,6 +24,7 @@ class Time:
             hours (int): Hours.
             minutes (int): Minutes.
             seconds (int): Seconds.
+            miliseconds (int): Miliseconds.
         """
         self.__hours = hours
         self.__minutes = minutes
@@ -35,7 +36,8 @@ class Time:
         """Get the hours of the time.
 
         Returns:
-            int: Hours."""
+            int: Hours.
+        """
         return self.__hours
 
     @hours.setter
@@ -71,7 +73,7 @@ class Time:
 
         Returns:
             int: Seconds.
-        ."""
+        """
         return self.__seconds
 
     @seconds.setter
