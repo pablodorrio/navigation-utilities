@@ -11,4 +11,5 @@ src/navigation_utilities.egg-info/SOURCES.txt
 src/navigation_utilities.egg-info/dependency_links.txt
 src/navigation_utilities.egg-info/requires.txt
 src/navigation_utilities.egg-info/top_level.txt
+src/navigation_utilities/utils/__init__.py
 src/navigation_utilities/utils/time.py
