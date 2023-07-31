@@ -13,6 +13,7 @@ class Nmea:
     Attributes:
         latitude (str): Latitude of the location.
         longitude (str): Longitude of the location.
+        time (Time): Time of the location.
     """
 
     def __init__(self, latitude: str, longitude: str, time: Time) -> None:

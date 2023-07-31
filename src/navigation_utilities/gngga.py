@@ -16,7 +16,7 @@ class Gngga(Nmea):
     Attributes:
         latitude (str): Latitude of the location.
         longitude (str): Longitude of the location.
-        time (TIme): Time of the location.
+        time (Time): Time of the location.
     """
 
     def __init__(self, sentence: str) -> None:
@@ -29,7 +29,7 @@ class Gngga(Nmea):
             NmeaError: If the sentence is not a NMEA($GNGGA) sentence.
         """
 
-        if sentence.strip().split(",")[0] != "$GNGGA":
+        if sentence.strip().split(",")[0] != "$GNGGA" or len(sentence.strip().split(",")) != 15:
             raise NmeaError("Error: invalid $GNGGA sentence.")
         else:
             self.sentence = sentence.strip()
