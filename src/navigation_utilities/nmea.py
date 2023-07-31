@@ -4,6 +4,8 @@ Author:
     Pablo Dorrio Vazquez (@pablodorrio)
 """
 
+from .coordinate import Coordinate
+from .oxts import Oxts
 from .utils.time import Time
 
 
@@ -53,6 +55,44 @@ class Nmea:
             Time: Time of the location.
         """
         return self.__time
+    
+    def to_oxts(self) -> Oxts:
+        """Transform the latitude and longitude from NMEA ($GNGGA)
+        to decimal degrees.
+
+        Returns:
+            Oxts: OxTS sentence with the latitude and longitude in decimal degrees.
+        """
+
+        lat_deg = int(self.latitude[:2])  # Degrees
+        lat_min = float(self.latitude[2:-1])  # Minutes
+
+        lon_deg = int(self.longitude[:3])  # Degrees
+        lon_min = float(self.longitude[3:-1])  # Minutes
+
+        lat_dec = lat_deg + (lat_min / 60)
+        lon_dec = lon_deg + (lon_min / 60)
+
+        if self.latitude[-1] == "S":  # North or south
+            lat_dec *= -1
+        if self.longitude[-1] == "W":  # East or west
+            lon_dec *= -1
+
+        return Oxts(lat_dec, lon_dec)
+
+    def to_coordinate(self, lat_0: float, lon_0: float) -> Coordinate:
+        """Transform the latitude and longitude from NMEA($GNGGA)
+        to a bidimensional (x, y) coordinate.
+
+        Args:
+            lat_0 (float): Latitude of the origin in decimal degrees.
+            lon_0 (float): Longitude of the origin in decimal degrees.
+
+        Returns:
+            Coordinate: Bidimensional (x, y) coordinate of the location.
+        """
+        oxts = self.to_oxts()
+        return oxts.to_coordinate(lat_0, lon_0)
 
     def __str__(self) -> str:
         """Get the string representation of the NMEA sentence.
